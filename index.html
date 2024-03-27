@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color changer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body, html {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            Background-image: linear-gradient(to right, rgb(92,145,229), 
+            rgb(152,63,198))
+        }
+        
+        section {
+            text-align: center;
+            background-color: #ffffff; /* Change the section background color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #123456; /* Change button background color */
+            color: #ffffff; /* Change button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Add transition effect */
+        }
+        
+        button:hover {
+            background-color: #234567; /* Change button background color on hover */
+        }
+        
+        .copyCode {
+            margin-top: auto;
+            padding: auto;
+            background-image: linear-gradient(to right, rgb(92,145,229), rgb(152,63,198));
+            color: #ffffff; /* Change text color */
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            <button id="mybutton1">#123456</button>
+            <button id="mybutton2">#123456</button>
+        </div>
+        <h2>Copy Your Code here</h2>
+        <div class="copyCode">
+            Background-image: linear-gradient(to right, rgb(92,145,229), 
+            rgb(152,63,198))
+        </div>
+    </section>
+    <script>
+        let btn1 = document.getElementById('mybutton1')
+        let btn2 = document.getElementById('mybutton2')
+        let sum1 = "#5C91E5"
+        let sum2 = "#983FC6"
+        let copyword = document.querySelector('.copyCode')
+        btn1.addEventListener('click',()=>{
+            let randomNumbers = "0123456789ABCDEF"
+            sum1 = "#" 
+            for(let i= 0; i < 6; i++){
+            let gussno = Math.floor(Math.random()*16)
+            sum1 = sum1 + randomNumbers[gussno].toString()
+            }
+           document.body.style.backgroundImage = `linear-gradient(to right, ${sum1}, 
+           ${sum2}`
+            btn1.innerText = `${sum1}`
+            copyword.innerText = `background-image: linear-gradient(to right, ${sum1}, 
+           ${sum2})`
+        })
+
+        btn2.addEventListener('click',()=>{
+            let randomNumbers = "0123456789ABCDEF"
+            sum2 = "#" 
+            for(let i= 0; i < 6; i++){
+            let gussno = Math.floor(Math.random()*16)
+            sum2 = sum2 + randomNumbers[gussno].toString()
+            }
+            document.body.style.backgroundImage = `linear-gradient(to right, ${sum1}, 
+            ${sum2}`
+            btn2.innerText = `${sum2}`
+            copyword.innerText = `background-image: linear-gradient(to right, ${sum1}, 
+           ${sum2})`
+        })
+
+        
+        copyword.addEventListener('click',() =>{
+            navigator.clipboard.writeText(copyword.innerText)
+            .then(() => {
+                alert('Text copied');
+            })
+            .catch(error => {
+                console.error('Unable to copy text: ', error);
+            });          
+        })
+    </script>
+</body>
+</html>
